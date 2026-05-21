@@ -1,4 +1,3 @@
-# python-file-handling-task1
 # Task 1 - File Handling and Automation in Python
 
 ## Description
