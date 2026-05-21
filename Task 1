@@ -1,0 +1,74 @@
+# ===============================
+# File Handling and Automation Script
+# ===============================
+
+import os
+import csv
+import shutil
+
+try:
+    with open("sample.txt", "w") as file:
+        file.write("Hello, this is a sample text file.\n")
+        file.write("This file is created using Python.\n")
+    print("Text file written successfully.")
+except Exception as e:
+    print("Error while writing text file:", e)
+
+try:
+    with open("sample.txt", "r") as file:
+        content = file.read()
+        print("\nReading Text File:")
+        print(content)
+except FileNotFoundError:
+    print("Text file not found.")
+except Exception as e:
+    print("Error while reading text file:", e)
+
+try:
+    with open("students.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["Name", "Age", "Marks"])
+        writer.writerow(["John", 20, 85])
+        writer.writerow(["Emma", 21, 90])
+    print("CSV file written successfully.")
+except Exception as e:
+    print("Error while writing CSV file:", e)
+
+try:
+    print("\nReading CSV File:")
+    with open("students.csv", "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(row)
+except FileNotFoundError:
+    print("CSV file not found.")
+except Exception as e:
+    print("Error while reading CSV file:", e)
+
+try:
+    os.rename("sample.txt", "renamed_sample.txt")
+    print("\nFile renamed successfully.")
+except FileNotFoundError:
+    print("File to rename not found.")
+except Exception as e:
+    print("Error while renaming file:", e)
+
+try:
+    if not os.path.exists("backup"):
+        os.mkdir("backup")
+    shutil.move("renamed_sample.txt", "backup/renamed_sample.txt")
+    print("File moved to backup folder.")
+except FileNotFoundError:
+    print("File to move not found.")
+except Exception as e:
+    print("Error while moving file:", e)
+
+try:
+    os.remove("students.csv")
+    print("CSV file deleted successfully.")
+except FileNotFoundError:
+    print("File to delete not found.")
+except Exception as e:
+    print("Error while deleting file:", e)
+
+print("\nAll operations completed.")
